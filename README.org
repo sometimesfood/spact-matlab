@@ -1,0 +1,6 @@
+* Simple CENTRIST implementation for Matlab
+
+A simple Matlab implementation of the CENTRIST visual descriptor.
+
+** References
+ - [[http://c2inet.sce.ntu.edu.sg/Jianxin/paper/PAMI_CENTRIST.pdf][CENTRIST: A Visual Descriptor for Scene Categorization]]; Wu, Jianxin & Rehg, James M.
