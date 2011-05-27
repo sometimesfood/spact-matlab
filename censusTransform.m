@@ -12,7 +12,7 @@ function censusTransformValue = censusTransform(image, x, y)
   end
 
 censusTransformValue = uint8(0);
-center = image(x, y);
+center = image(y, x);
 neighbours = neighbourPixels(image, x, y);
 for i = 1:length(neighbours)
   if center >= neighbours(i)
