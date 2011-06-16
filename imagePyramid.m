@@ -14,15 +14,13 @@ function subimages = imagePyramid(I, level)
     blockHeight = floor(height/nBlocks);
     nOverlappingBlocks = nBlocks-1;
     nBlocksTotal = nBlocks^2 + nOverlappingBlocks^2;
-    borders = repmat([0 0 0 0], nBlocksTotal, 1);
+    borders = repmat([0 0], nBlocksTotal, 1);
 
     for x=1:nBlocks
       for y=1:nBlocks
         blockNumber = (y-1)*nBlocks + x;
         borders(blockNumber, 1) = blockHeight*(y-1)+1;
         borders(blockNumber, 2) = blockWidth*(x-1)+1;
-        borders(blockNumber, 3) = borders(blockNumber, 1) + blockHeight - 1;
-        borders(blockNumber, 4) = borders(blockNumber, 2) + blockWidth - 1;
       end
     end
 
@@ -31,8 +29,6 @@ function subimages = imagePyramid(I, level)
         blockNumber = (nBlocks^2) + (y-1)*nOverlappingBlocks + x;
         borders(blockNumber, 1) = floor(blockHeight/2) + blockHeight*(y-1)+1;
         borders(blockNumber, 2) = floor(blockWidth/2) + blockWidth*(x-1)+1;
-        borders(blockNumber, 3) = borders(blockNumber, 1) + blockHeight - 1;
-        borders(blockNumber, 4) = borders(blockNumber, 2) + blockWidth - 1;
       end
     end
   end
@@ -42,7 +38,9 @@ function subimages = imagePyramid(I, level)
 subimages = repmat(zeros(blockHeight, blockWidth), [1 1 nSubimages]);
 
 for i = 1:nSubimages
-  subimages(:, :, i) = I(imageBorders(i, 1):imageBorders(i, 3), ...
-                         imageBorders(i, 2):imageBorders(i, 4));
+  top = imageBorders(i, 1);
+  left = imageBorders(i, 2);
+  subimages(:, :, i) = I(top:top+blockHeight-1, ...
+                         left:left+blockWidth-1);
 end
 end
