@@ -1,4 +1,4 @@
-function censusTransformedImage = censusTransformImage(image)
+function censusTransformedImage = centrist(image)
 grayImage = rgb2gray(image);
 censusTransformedImage = zeros(size(grayImage)-2, 'uint8');
 [height, width] = size(grayImage);

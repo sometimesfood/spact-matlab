@@ -4,7 +4,7 @@ for i = 1:length(imageList)
   filename = imageList(i).name;
   inputFile = fullfile(inputDir, filename);
   image = imread(inputFile);
-  ctImage = censusTransformImage(image);
+  ctImage = centrist(image);
   outputFile = fullfile(outputDir, strrep(filename, '.jpg', '.png'));
   imwrite(ctImage, outputFile, 'PNG');
 end
