@@ -1,4 +1,4 @@
-function censusTransformedImage = centrist(image)
+function censusTransformedImage = censusTransformImage(image)
 if ndims(image) == 2
   grayImage = image;
 else
