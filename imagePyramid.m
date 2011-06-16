@@ -41,15 +41,8 @@ function subimages = imagePyramid(I, level)
 [nSubimages, ~] = size(imageBorders);
 subimages = repmat(zeros(blockWidth, blockHeight), [1 1 nSubimages]);
 
-image(I)
-hold
-
 for i = 1:nSubimages
-%  subimages(:, :, i) = I(imageBorders(i, 1):imageBorders(i, 3), ...
-%                         imageBorders(i, 2):imageBorders(i, 4));
-  rectangle('Position', [imageBorders(i, 2),...
-                         imageBorders(i, 1),...
-                         imageBorders(i, 4)-imageBorders(i,2)+1,...
-                         imageBorders(i, 3)-imageBorders(i,1)+1]);
+  subimages(:, :, i) = I(imageBorders(i, 1):imageBorders(i, 3), ...
+                         imageBorders(i, 2):imageBorders(i, 4));
 end
 end
