@@ -1,5 +1,14 @@
-function spactImage = spact(image, pcaLoadings, columnMeans)
-ctImage = censusTransformImage(image);
+function spactImage = spact(image, pcaLoadings, columnMeans, imageIsFilePath)
+if ~exist('imageIsFilePath', 'var')
+  imageIsFilePath = false;
+end
+
+if imageIsFilePath
+  % image is a file path to an image, use cache
+  ctImage = cachedCensusTransformImage(image);
+else
+  ctImage = censusTransformImage(image);
+end
 
 level1 = imagePyramid(ctImage, 1);
 level2 = imagePyramid(ctImage, 2);
