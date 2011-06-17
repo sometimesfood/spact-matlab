@@ -4,6 +4,6 @@ if(~exist('imageIsCt', 'var'))
 end
 
 centristImage = centrist(image, imageIsCt);
-pactImage = pcaLoadings' * (centristImage(2:255)-columnMeans)';
+pactImage = pcaLoadings' * (centristImage-columnMeans)';
 pactImage = pactImage(1:40,:)';
 end
