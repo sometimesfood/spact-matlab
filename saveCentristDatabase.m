@@ -1,5 +1,5 @@
 function centristDatabase = saveCentristDatabase(directory)
-centristDatabase = imhistDirectory(directory);
-save(fullfile(directory, 'centristDatabase.mat'),...
+centristDatabase = centristDirectory(directory);
+save(fullfile(directory, 'cache', 'centristDatabase.mat'),...
      'centristDatabase');
 end
