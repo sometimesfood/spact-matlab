@@ -5,5 +5,8 @@ pcaLoadings = princomp(centristDatabase);
 spactDatabase = spactDirectory(directory, pcaLoadings, columnMeans);
 cacheDir = fullfile(directory, 'cache');
 save(fullfile(cacheDir, 'centristDatabase.mat'), 'centristDatabase');
-save(fullfile(cacheDir, 'spactDatabase.mat'), 'spactDatabase');
+save(fullfile(cacheDir, 'spactDatabase.mat'), ...
+     'spactDatabase', ...
+     'pcaLoadings', ...
+     'columnMeans');
 end
