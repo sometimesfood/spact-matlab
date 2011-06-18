@@ -1,0 +1,6 @@
+* Add simple search functionality
+ - =findSimilarImages(imread('foobar'), n, folder)=
+ - should return a list of similar images
+ - default for n: all images? 10 images?
+ - default for folder: images/samples/
+ - should check for saved database and load it if current
