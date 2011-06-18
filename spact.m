@@ -1,11 +1,10 @@
-function spactImage = spact(image, pcaLoadings, columnMeans, imageIsFilePath)
-if ~exist('imageIsFilePath', 'var')
-  imageIsFilePath = false;
+function spactImage = spact(image, pcaLoadings, columnMeans, imageIsCt)
+if ~exist('imageIsCt', 'var')
+  imageIsCt = false;
 end
 
-if imageIsFilePath
-  % image is a file path to an image, use cache
-  ctImage = cachedCensusTransformImage(image);
+if imageIsCt
+  ctImage = image;
 else
   ctImage = censusTransformImage(image);
 end
