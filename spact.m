@@ -9,15 +9,15 @@ else
   ctImage = censusTransformImage(image);
 end
 
+level0 = imagePyramid(ctImage, 0);
 level1 = imagePyramid(ctImage, 1);
 level2 = imagePyramid(ctImage, 2);
-pyramid = { level1, level2 };
+pyramid = { level0, level1, level2 };
 
-nPactImages = 1 + 5 + 25;
+nPactImages = length(level0) + length(level1) + length(level2);
 pactImages = cell(1, nPactImages);
-pactImages{1} = pact(ctImage, pcaLoadings, columnMeans, true);
-imageNo = 2;
 
+imageNo = 1;
 for i=1:length(pyramid)
   for j=1:length(pyramid{i})
     pactImages{imageNo} = pact(pyramid{i}{j}, ...
