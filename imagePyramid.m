@@ -35,12 +35,12 @@ function subimages = imagePyramid(I, level)
 
 [imageBorders, blockHeight, blockWidth] = pyramidBorders(I, level);
 [nSubimages, ~] = size(imageBorders);
-subimages = repmat(zeros(blockHeight, blockWidth, class(I)), [1 1 nSubimages]);
+subimages = cell(nSubimages, 1);
 
 for i = 1:nSubimages
   top = imageBorders(i, 1);
   left = imageBorders(i, 2);
-  subimages(:, :, i) = I(top:top+blockHeight-1, ...
-                         left:left+blockWidth-1);
+  subimages{i} = I(top:top+blockHeight-1, ...
+                   left:left+blockWidth-1);
 end
 end
