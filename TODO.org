@@ -5,5 +5,4 @@
  - default for folder: images/samples/
  - should check for saved database and load it, save new database otherwise
 
-* Rename saveSpactDatabase to updateDatabase
 * Save filenames in database

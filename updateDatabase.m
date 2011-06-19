@@ -1,4 +1,4 @@
-function [spactDatabase, pcaLoadings, columnMeans] = saveSpactDatabase(directory)
+function [spactDatabase, pcaLoadings, columnMeans] = updateDatabase(directory)
   function absoluteFilenames = imageList(directory)
     images = dir(fullfile(directory, '*.jpg'));
     absoluteFilenames = arrayfun(@(x) fullfile(directory, x.name), ...
