@@ -5,4 +5,3 @@
  - default for folder: images/samples/
  - should check for saved database and load it, save new database otherwise
 
-* Save filenames in database
