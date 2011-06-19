@@ -1,0 +1,7 @@
+* Simple GUI
+** image file selector
+** database selector
+** update database
+ - maybe show progress bar when updated from GUI
+
+* C or C++ implementation for censusTransform and/or censusTransformImage
