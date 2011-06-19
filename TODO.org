@@ -1,3 +1,0 @@
-* Add simple search functionality
- - =findSimilarImages(imread('foobar'), n, folder)=
- - should check for saved database and load it, save new database otherwise

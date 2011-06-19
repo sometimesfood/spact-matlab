@@ -7,7 +7,13 @@ if ~exist('nImages', 'var')
   nImages = 10;
 end
 
-load(fullfile(directory, 'cache/spactDatabase.mat'));
+% create database if it does not exist
+dbFilePath = fullfile(directory, 'cache/spactDatabase.mat');
+if ~exist(dbFilePath, 'file')
+  updateDatabase(directory);
+end
+
+load(dbFilePath);
 spactImage = spact(image, pcaLoadings, columnMeans);
 [~, indexes] = similarItems(spactImage, spactDatabase);
 filelist = { filenames{indexes} }';
