@@ -1,6 +1,9 @@
 * Add simple search functionality
  - =findSimilarImages(imread('foobar'), n, folder)=
- - should return a list of similar images
+ - should return n filenames of similar images
  - default for n: all images? 10 images?
  - default for folder: images/samples/
- - should check for saved database and load it if current
+ - should check for saved database and load it, save new database otherwise
+
+* Rename saveSpactDatabase to updateDatabase
+* Save filenames in database
