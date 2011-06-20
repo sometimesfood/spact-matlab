@@ -1,5 +1,6 @@
 #include "mex.h"
 
+// FIXME: use a proper fixed size type
 typedef unsigned char uint8;
 
 inline size_t arrayAddress(size_t x, size_t y, size_t height)
@@ -56,16 +57,19 @@ void mexFunction(int nlhs,
   if (nrhs!=1)
     mexErrMsgIdAndTxt("censusTransformImage:nrhs","One input required.");
 
-  if (!mxIsUint8(prhs[0]))
+  const mxArray* image = prhs[0];
+
+  if (!mxIsUint8(image))
     mexErrMsgIdAndTxt("censusTransformImage:notUint8","Image must be a uint8 array.");
 
-  if ((mxGetM(prhs[0])<3) || (mxGetN(prhs[0])<3))
+  if (mxGetM(image)<3 || mxGetN(image)<3)
     mexErrMsgIdAndTxt("censusTransformImage:imageTooSmall","Image must be at least 3x3.");
 
-  const mwSize nrows = mxGetM(prhs[0]);
-  const mwSize ncols = mxGetN(prhs[0]);
+  const mwSize nRows = mxGetM(image);
+  const mwSize nCols = mxGetN(image);
 
-  plhs[0] = mxCreateNumericMatrix(nrows-2, ncols-2, mxUINT8_CLASS, mxREAL);
+  plhs[0] = mxCreateNumericMatrix(nRows-2, nCols-2, mxUINT8_CLASS, mxREAL);
+  mxArray* ctImage = plhs[0];
 
-  censusTransformImage(prhs[0], plhs[0]);
+  censusTransformImage(image, ctImage);
 }
