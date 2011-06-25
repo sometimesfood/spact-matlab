@@ -1,6 +1,7 @@
-function scrollfig
+function scrollfig(imageFilenames)
 
-% Created by Evan Brooks, evan.brooks@wpafb.af.mil:
+% Created by Evan Brooks, evan.brooks@wpafb.af.mil
+% http://www.mathworks.com/matlabcentral/fileexchange/5253-scrolling-figure-demo/
 % http://www.mathworks.com/matlabcentral/fileexchange/5253-scrolling-figure-demo/content/scrollfigdemo.m
 %
 % Modified by Sebastian Boehm
@@ -20,16 +21,8 @@ set(f,'doublebuffer', 'on', 'resize', 'off')
 % set columns of plots
 cols = 2;
 
-% create 5 data sets to plot
-x=0:1e-2:2*pi;
-y{1}=sin(x);
-y{2}=cos(x);
-y{3}=tan(x);
-y{4}=x.^2;
-y{5}=x.^3;
-
 % determine required rows of plots
-rows = ceil(length(y)/cols);
+rows = ceil(length(imageFilenames)/cols);
 
 % increase figure width for additional axes
 fpos = get(gcf, 'position');
@@ -43,9 +36,9 @@ buf = .15/cols; % buffer between axes & between left edge of figure and axes
 awidth = (1-buf*cols-.08/cols)/cols; % width of all axes
 aidx = 1;
 rowidx = 0;
-while aidx <= length(y)
+while aidx <= length(imageFilenames)
     for i = 0:cols-1
-        if aidx+i <= length(y)
+        if aidx+i <= length(imageFilenames)
             start = buf + buf*i + awidth*i;
             apos{aidx+i} = [start 1-rowidx-.92 awidth .85];
             a{aidx+i} = axes('position', apos{aidx+i});
@@ -55,12 +48,13 @@ while aidx <= length(y)
     aidx = aidx + cols;  % increment index of axes
 end
 
-% make plots
-axes(a{1}), plot(x,y{1}), title('sine'), xlabel('x'), ylabel('sin(x)')
-axes(a{2}), plot(x,y{2}), title('cosine'), xlabel('x'), ylabel('cos(x)')
-axes(a{3}), plot(x,y{3}), title('tangent'), xlabel('x'), ylabel('tan(x)')
-axes(a{4}), plot(x,y{4}), title('x^2'), xlabel('x'), ylabel('x^2')
-axes(a{5}), plot(x,y{5}), title('x^3'), xlabel('x'), ylabel('x^3')
+% show images
+axes(a{1});
+imshow(imread(imageFilenames{1}));
+title(['Input: ' imageFilenames{i}]);
+for i=2:length(imageFilenames)
+  axes(a{i}), imshow(imread(imageFilenames{i})), title(imageFilenames{i})
+end
 
 % determine the position of the scrollbar & its limits
 swidth = max([.03/cols, 16/scrnsz(3)]);

@@ -1,9 +1,4 @@
-* Simple GUI
-** image file selector
-** database selector
-** update database
- - maybe show progress bar when updated from GUI
-
-* C or C++ implementation for censusTransform and/or censusTransformImage
- - make sure images are uint8 arrays
- - move rgb2gray into centrist.m from censusTransformImage
+* GUI
+ - disable "find similar images" button when no image has been selected
+ - show database path in label
+ - group user interface elements

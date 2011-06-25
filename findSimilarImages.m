@@ -1,5 +1,6 @@
 function filelist = findSimilarImages(image, directory, nImages)
-if ~exist('directory', 'var')
+
+if ~exist('directory', 'var') || isempty(directory)
   directory = 'images/samples';
 end
 

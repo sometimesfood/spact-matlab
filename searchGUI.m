@@ -59,11 +59,17 @@ varargout{1} = handles.output;
 
 % --- Executes on button press in findImagesButton.
 function findImagesButton_Callback(hObject, eventdata, handles)
-scrollfig;
+imagePath = getappdata(gcbf, 'imagePath');
+directory = getappdata(gcbf, 'searchDir');
+results = vertcat(imagePath, ...
+                  findSimilarImages(imread(imagePath), ...
+                                    directory, ...
+                                    9));
+scrollfig(results);
 
 % --- Executes on button press in loadImageButton.
 function loadImageButton_Callback(hObject, eventdata, handles)
-[fileName, filePath] = uigetfile({supportedImageFormats, 'Images';...
+[fileName, filePath] = uigetfile({supportedImageFormats, 'Images'; ...
                                   '*', 'All files'}, ...
                                  'Select an Image...');
 imagePath = [filePath fileName];
