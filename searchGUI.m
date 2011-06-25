@@ -77,6 +77,7 @@ if fileName ~=  0
   imagePath = [filePath fileName];
   setappdata(gcbf, 'imagePath', imagePath);
   imshow(imread(imagePath), 'Parent', handles.imageAxes);
+  set(handles.findImagesButton, 'Enable', 'On');
 end
 
 % --- Executes on button press in changeSearchDirButton.

@@ -1,2 +1,0 @@
-* GUI
- - disable "find similar images" button when no image has been selected
