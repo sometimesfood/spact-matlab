@@ -43,8 +43,9 @@ else
 end
 % End initialization code - DO NOT EDIT
 
-% ignore unused function warnings
+% suppress unused function and variable warnings
 %#ok<*DEFNU>
+%#ok<*INUSL>
 
 % --- Executes just before searchGUI is made visible.
 function searchGUI_OpeningFcn(hObject, eventdata, handles, varargin)
@@ -54,7 +55,7 @@ handles.output = hObject;
 guidata(hObject, handles);
 
 % --- Outputs from this function are returned to the command line.
-function varargout = searchGUI_OutputFcn(hObject, eventdata, handles) 
+function varargout = searchGUI_OutputFcn(hObject, eventdata, handles)
 varargout{1} = handles.output;
 
 % --- Executes on button press in findImagesButton.
@@ -72,9 +73,11 @@ function loadImageButton_Callback(hObject, eventdata, handles)
 [fileName, filePath] = uigetfile({supportedImageFormats, 'Images'; ...
                                   '*', 'All files'}, ...
                                  'Select an Image...');
-imagePath = [filePath fileName];
-setappdata(gcbf, 'imagePath', imagePath);
-imshow(imread(imagePath), 'Parent', handles.imageAxes);
+if fileName ~=  0
+  imagePath = [filePath fileName];
+  setappdata(gcbf, 'imagePath', imagePath);
+  imshow(imread(imagePath), 'Parent', handles.imageAxes);
+end
 
 % --- Executes on button press in changeSearchDirButton.
 function changeSearchDirButton_Callback(hObject, eventdata, handles)
