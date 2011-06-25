@@ -78,6 +78,8 @@ imshow(imread(imagePath), 'Parent', handles.imageAxes);
 
 % --- Executes on button press in changeSearchDirButton.
 function changeSearchDirButton_Callback(hObject, eventdata, handles)
-searchDir = uigetdir;
-setappdata(gcbf, 'searchDir', searchDir);
-getappdata(gcbf, 'imagePath')
+searchDir = uigetdir(get(handles.searchDirPath, 'String'));
+if searchDir ~= 0
+  setappdata(gcbf, 'searchDir', searchDir);
+  set(handles.searchDirPath, 'String', searchDir);
+end
