@@ -83,6 +83,8 @@ end
 function changeSearchDirButton_Callback(hObject, eventdata, handles)
 searchDir = uigetdir(get(handles.searchDirPath, 'String'));
 if searchDir ~= 0
+  currentDir = pwd;
+  shortPath = cell2mat(strrep({ searchDir }, [ currentDir '/'], ''));
   setappdata(gcbf, 'searchDir', searchDir);
-  set(handles.searchDirPath, 'String', searchDir);
+  set(handles.searchDirPath, 'String', shortPath);
 end
