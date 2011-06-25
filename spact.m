@@ -6,7 +6,7 @@ end
 if imageIsCt
   ctImage = image;
 else
-  ctImage = censusTransformImage(image);
+  ctImage = censusTransformImage(imageToGray(image));
 end
 
 level0 = imagePyramid(ctImage, 0);

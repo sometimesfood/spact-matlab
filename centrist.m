@@ -3,12 +3,14 @@ if(~exist('imageIsCt', 'var'))
   imageIsCt = false;
 end
 
+grayImage = imageToGray(image);
+
 if (imageIsCt)
   % image is already census transformed
   ctImage = image;
 else
   % image is not yet census transformed
-  ctImage = censusTransformImage(image);
+  ctImage = censusTransformImage(grayImage);
 end
 
 censusTransformHistogram = imhist(ctImage)';
