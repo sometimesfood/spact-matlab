@@ -1,13 +1,6 @@
 function subimages = imagePyramid(I, level)
-  function [borders, blockHeight, blockWidth] = pyramidBorders(I, level)
+  function subimages = splitImage(I, level)
     [height, width] = size(I);
-
-    if level == 0
-      borders = [1, 1, height, width];
-      blockHeight = height;
-      blockWidth = width;
-      return
-    end
 
     nBlocks = 2^level;
     blockWidth = floor(width/nBlocks);
@@ -31,16 +24,22 @@ function subimages = imagePyramid(I, level)
         borders(blockNumber, 2) = floor(blockWidth/2) + blockWidth*(x-1)+1;
       end
     end
+
+    [nSubimages, ~] = size(borders);
+    subimages = cell(nSubimages, 1);
+    for i = 1:nSubimages
+      top = borders(i, 1);
+      left = borders(i, 2);
+      subimages{i} = I(top:top+blockHeight-1, ...
+                       left:left+blockWidth-1);
+    end
   end
 
-[imageBorders, blockHeight, blockWidth] = pyramidBorders(I, level);
-[nSubimages, ~] = size(imageBorders);
-subimages = cell(nSubimages, 1);
-
-for i = 1:nSubimages
-  top = imageBorders(i, 1);
-  left = imageBorders(i, 2);
-  subimages{i} = I(top:top+blockHeight-1, ...
-                   left:left+blockWidth-1);
+splitImages = cell(level+1, 1);
+for l=0:level
+  scaledImage = imresize(I, 1/2^(level-l));
+  splitImages{l+1} = splitImage(scaledImage, l);
 end
+
+subimages = vertcat(splitImages{:});
 end

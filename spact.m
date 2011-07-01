@@ -1,31 +1,14 @@
-function spactImage = spact(image, pcaLoadings, columnMeans, imageIsCt)
-if ~exist('imageIsCt', 'var')
-  imageIsCt = false;
-end
+function spactImage = spact(image, pcaLoadings, columnMeans)
 
-if imageIsCt
-  ctImage = image;
-else
-  ctImage = censusTransformImage(imageToGray(image));
-end
-
-level0 = imagePyramid(ctImage, 0);
-level1 = imagePyramid(ctImage, 1);
-level2 = imagePyramid(ctImage, 2);
-pyramid = { level0, level1, level2 };
-
-nPactImages = length(level0) + length(level1) + length(level2);
-pactImages = cell(1, nPactImages);
+pyramid = imagePyramid(image, 2);
+pactImages = cell(1, length(pyramid));
 
 imageNo = 1;
 for i=1:length(pyramid)
-  for j=1:length(pyramid{i})
-    pactImages{imageNo} = pact(pyramid{i}{j}, ...
-                               pcaLoadings, ...
-                               columnMeans, ...
-                               true);
-    imageNo = imageNo + 1;
-  end
+  pactImages{imageNo} = pact(pyramid{i}, ...
+                             pcaLoadings, ...
+                             columnMeans);
+  imageNo = imageNo + 1;
 end
 
 spactImage = cell2mat(pactImages);
