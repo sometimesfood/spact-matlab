@@ -2,8 +2,7 @@ function histograms = spactFiles(fileList, pcaLoadings, columnMeans)
 histograms = cell(length(fileList), 1);
 for i = 1:length(fileList)
   filename = fileList{i};
-  ctImage = cachedCensusTransformImage(filename);
-  histograms{i} = spact(ctImage, pcaLoadings, columnMeans, true);
+  histograms{i} = spact(imread(filename), pcaLoadings, columnMeans);
 end
 histograms = cell2mat(histograms);
 end

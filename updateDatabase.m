@@ -11,6 +11,10 @@ columnMeans = mean(centristDatabase);
 pcaLoadings = princomp(centristDatabase);
 spactDatabase = spactFiles(filenames, pcaLoadings, columnMeans);
 cacheDir = fullfile(directory, 'cache');
+if ~exist(cacheDir, 'dir')
+  % make sure there is a cache directory
+  mkdir(cacheDir)
+end
 save(fullfile(cacheDir, 'centristDatabase.mat'), ...
      'centristDatabase', ...
      'filenames');
