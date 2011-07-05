@@ -1,9 +1,5 @@
-function pactImage = pact(image, pcaLoadings, columnMeans, imageIsCt)
-if(~exist('imageIsCt', 'var'))
-  imageIsCt = false;
-end
-
-centristImage = centrist(image, imageIsCt);
+function pactImage = pact(image, pcaLoadings, columnMeans)
+centristImage = centrist(image);
 pactImage = pcaLoadings' * (centristImage-columnMeans)';
 pactImage = pactImage(1:40,:)';
 end
