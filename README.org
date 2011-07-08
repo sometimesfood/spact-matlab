@@ -1,6 +1,9 @@
-* Simple CENTRIST implementation for Matlab
+* spact-matlab
 
-A simple Matlab implementation of the CENTRIST visual descriptor.
+A simple Matlab implementation of the CENTRIST, PACT and sPACT visual descriptors.
 
 ** References
- - [[http://c2inet.sce.ntu.edu.sg/Jianxin/paper/PAMI_CENTRIST.pdf][CENTRIST: A Visual Descriptor for Scene Categorization]]; Wu, Jianxin & Rehg, James M.
+ - [[http://www.tyzx.com/PDFs/census.pdf][Non-parametric Local Transforms for Computing Visual Correspondence]]. Zabih, Ramin & Woodfill, John
+ - [[http://c2inet.sce.ntu.edu.sg/Jianxin/paper/PAMI_CENTRIST.pdf][CENTRIST: A Visual Descriptor for Scene Categorization]]. Wu, Jianxin & Rehg, James M.
+ - [[http://c2inet.sce.ntu.edu.sg/Jianxin/paper/cvpr_2008.pdf][Where am I: Place instance and category recognition using spatial PACT]]. Wu, Jianxin & Rehg, James M.
+ - [[http://www.di.ens.fr/willow/pdfs/cvpr06b.pdf][Beyond Bags of Features: Spatial Pyramid Matching for Recognizing Natural Scene Categories]]. Lazebnik, Svetlana; Schmid, Cordelia; Ponce, Jean
